@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mūzikas Olimps - Музыкальный Олимп</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #f4f4f4;
+            --primary-color: #c5a47e; /* Gold accent */
+            --card-bg-color: #2a2a2a;
+            --font-header: 'Cormorant Garamond', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-header);
+            font-weight: 600;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-color);
+        }
+
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            z-index: 1000;
+            background-color: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+        }
+        
+        .logo {
+            font-family: var(--font-header);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .lang-switcher button {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-family: var(--font-body);
+            cursor: pointer;
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher button:hover {
+            border-color: var(--primary-color);
+        }
+
+        .lang-switcher button.active {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/333333/c5a47e?text=Mūzikas+Olimps') no-repeat center center/cover;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #hero .hero-title {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        #hero .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        #about .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            border: 2px solid var(--primary-color);
+        }
+
+        /* Duo Section */
+        .duo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .duo-card {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .duo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .duo-card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .duo-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .duo-card .role {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        /* Repertoire Section */
+        .repertoire-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .repertoire-item {
+            background: var(--card-bg-color);
+            padding: 20px 40px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-family: var(--font-header);
+            font-weight: 600;
+        }
+        
+        /* Media Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Concerts Section */
+        .concert-placeholder {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #aaa;
+            border: 2px dashed #444;
+            padding: 40px;
+            border-radius: 5px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--card-bg-color);
+        }
+        
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content p {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        
+        .contact-details a {
+            font-size: 1.5rem;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .social-icons {
+            margin-top: 30px;
+        }
+        
+        .social-icons a {
+             font-size: 1.8rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h2 { font-size: 2.4rem; }
+            #hero .hero-title { font-size: 3.5rem; }
+            #about .about-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            h2 { font-size: 2rem; }
+            #hero .hero-title { font-size: 2.8rem; }
+            #hero .hero-subtitle { font-size: 1.2rem; }
+            .duo-grid { grid-template-columns: 1fr; }
+            .main-header { padding: 15px 20px; }
+            .logo { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">Mūzikas Olimps</div>
+        <nav class="lang-switcher">
+            <button id="lang-ru" data-lang="ru">RU</button>
+            <button id="lang-lv" data-lang="lv">LV</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <h1 class="hero-title" data-lang-key="heroTitle">Музыкальный Олимп</h1>
+            <p class="hero-subtitle" data-lang-key="heroSubtitle">Музыка, что трогает душу</p>
+        </section>
+
+        <!-- About Project Section -->
+        <section id="about">
+            <div class="container">
+                <h2 data-lang-key="aboutTitle">О проекте</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://placehold.co/600x400/333333/c5a47e?text=Дуэт" alt="Дуэт Музыкальный Олимп">
+                    </div>
+                    <div class="about-text">
+                        <p data-lang-key="aboutText1">
+                            «Музыкальный Олимп» — это творческий союз, в котором сливаются воедино благородный бас-баритон и виртуозное звучание рояля. Мы создаём уникальную атмосферу на стыке двух миров: вечной классики и любимой эстрады.
+                        </p>
+                        <p data-lang-key="aboutText2">
+                            Наша миссия — дарить слушателям искренние эмоции, погружая их в мир глубоких чувств и красивых мелодий. Каждое выступление для нас — это откровенный диалог с вашей душой через язык музыки.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Duo Section -->
+        <section id="duo">
+            <div class="container">
+                <h2 data-lang-key="duoTitle">Участники дуэта</h2>
+                <div class="duo-grid">
+                    <div class="duo-card">
+                        <img src="https://placehold.co/300x300/333333/c5a47e?text=Nikolajs" alt="Николай Маскин">
+                        <h3>Николай Маскин</h3>
+                        <p class="role" data-lang-key="nikolajsRole">Вокал (бас-баритон)</p>
+                        <p data-lang-key="nikolajsBio">Обладатель бархатного бас-баритона и выпускник Латвийской музыкальной академии имени Язепа Витолса. Николай тонко чувствует каждое произведение, наполняя его глубиной и драматизмом. Его исполнение проникает в самое сердце, не оставляя никого равнодушным.</p>
+                    </div>
+                    <div class="duo-card">
+                        <img src="https://placehold.co/300x300/333333/c5a47e?text=Tarāss" alt="Тарас Ткаченко">
+                        <h3>Тарас Ткаченко</h3>
+                        <p class="role" data-lang-key="tarassRole">Фортепиано, аранжировки</p>
+                        <p data-lang-key="tarassBio">Сердце и музыкальный двигатель дуэта. Тарас не только виртуозный пианист, но и талантливый аранжировщик, отвечающий за безупречное звучание. Его чуткий аккомпанемент создаёт идеальное полотно для голоса, а работа с аппаратурой гарантирует высочайшее качество звука на каждом концерте.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Repertoire Section -->
+        <section id="repertoire">
+            <div class="container">
+                <h2 data-lang-key="repertoireTitle">Наш репертуар</h2>
+                <div class="repertoire-list">
+                    <div class="repertoire-item" data-lang-key="repertoire1">Классические романсы</div>
+                    <div class="repertoire-item" data-lang-key="repertoire2">Советская эстрада</div>
+                    <div class="repertoire-item" data-lang-key="repertoire3">Зарубежные хиты</div>
+                    <div class="repertoire-item" data-lang-key="repertoire4">Неаполитанские песни</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concerts Section -->
+        <section id="concerts">
+            <div class="container">
+                <h2 data-lang-key="concertsTitle">Афиша</h2>
+                <div class="concert-placeholder">
+                    <p data-lang-key="concertsText">В данный момент запланированных концертов нет. Следите за обновлениями на наших страницах в социальных сетях!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Section -->
+        <section id="media">
+            <div class="container">
+                <h2 data-lang-key="mediaTitle">Послушайте нас</h2>
+                <div class="video-container">
+                    <!-- Замените YOUTUBE_VIDEO_ID на ID вашего видео с YouTube -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <h2 data-lang-key="contactTitle">Свяжитесь с нами</h2>
+                    <p data-lang-key="contactText">Мы открыты к сотрудничеству и готовы украсить ваше мероприятие — будь то концерт, юбилей, свадьба или корпоративный вечер. Свяжитесь с нами, чтобы обсудить детали.</p>
+                    <div class="contact-details">
+                        <a href="tel:+3712540000">+371 2 540000</a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/muzolimps" target="_blank" title="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8s.01 2.444.048 3.297c.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372.527-.205.973-.478 1.417-.923.445-.444.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 8 0zm0 1.442a6.556 6.556 0 0 1 3.22.045c.784.036 1.203.166 1.485.276.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.701.275 1.485.041.77.045 1.02.045 3.22s-.004 2.45-.045 3.22c-.035.784-.165 1.203-.275 1.485a2.47 2.47 0 0 1-.598.92c-.28.28-.546.453-.92.598-.282.11-.701.24-1.485.276-.77.041-1.02.045-3.22.045s-2.45-.004-3.22-.045c-.784-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.598-.92c-.11-.282-.24-.701-.275-1.485-.041-.77-.045-1.02-.045-3.22s.004-2.45.045-3.22c.035-.784.165-1.203.275-1.485a2.47 2.47 0 0 1 .598-.92c.28-.28.546-.453.92-.598.282-.11.701-.24 1.485-.276.77-.041 1.02-.045 3.22-.045zm0 2.45a4.108 4.108 0 1 0 0 8.217 4.108 4.108 0 0 0 0-8.217zm0 1.442a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334zM12.973 2.882a1.146 1.146 0 1 0 0 2.292 1.146 1.146 0 0 0 0-2.292z"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com/muzolimps" target="_blank" title="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 Mūzikas Olimps. Visas tiesības aizsargātas. / Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- TRANSLATION DATA ---
+            const translations = {
+                // Titles
+                heroTitle: {
+                    ru: 'Музыкальный Олимп',
+                    lv: 'Mūzikas Olimps'
+                },
+                aboutTitle: {
+                    ru: 'О проекте',
+                    lv: 'Par projektu'
+                },
+                duoTitle: {
+                    ru: 'Участники дуэта',
+                    lv: 'Dueta dalībnieki'
+                },
+                repertoireTitle: {
+                    ru: 'Наш репертуар',
+                    lv: 'Mūsu repertuārs'
+                },
+                concertsTitle: {
+                    ru: 'Афиша',
+                    lv: 'Afiša'
+                },
+                mediaTitle: {
+                    ru: 'Послушайте нас',
+                    lv: 'Paklausieties mūs'
+                },
+                contactTitle: {
+                    ru: 'Свяжитесь с нами',
+                    lv: 'Sazinieties ar mums'
+                },
+                // Content
+                heroSubtitle: {
+                    ru: 'Музыка, что трогает душу',
+                    lv: 'Mūzika, kas aizskar dvēseli'
+                },
+                aboutText1: {
+                    ru: '«Музыкальный Олимп» — это творческий союз, в котором сливаются воедино благородный бас-баритон и виртуозное звучание рояля. Мы создаём уникальную атмосферу на стыке двух миров: вечной классики и любимой эстрады.',
+                    lv: '«Mūzikas Olimps» ir radoša apvienība, kurā saplūst cēls basbaritons un virtuoza klavierspēle. Mēs radām unikālu atmosfēru, kur satiekas divas pasaules: mūžīgā klasika un iemīļota estrāde.'
+                },
+                aboutText2: {
+                    ru: 'Наша миссия — дарить слушателям искренние эмоции, погружая их в мир глубоких чувств и красивых мелодий. Каждое выступление для нас — это откровенный диалог с вашей душой через язык музыки.',
+                    lv: 'Mūsu misija ir dāvāt klausītājiem patiesas emocijas, iegremdējot viņus dziļu jūtu un skaistu melodiju pasaulē. Katra mūsu uzstāšanās ir atklāts dialogs ar jūsu dvēseli mūzikas valodā.'
+                },
+                nikolajsRole: {
+                    ru: 'Вокал (бас-баритон)',
+                    lv: 'Vokāls (basbaritons)'
+                },
+                tarassRole: {
+                    ru: 'Фортепиано, аранжировки',
+                    lv: 'Klavieres, aranžējumi'
+                },
+                nikolajsBio: {
+                    ru: 'Обладатель бархатного бас-баритона и выпускник Латвийской музыкальной академии имени Язепа Витолса. Николай тонко чувствует каждое произведение, наполняя его глубиной и драматизмом. Его исполнение проникает в самое сердце, не оставляя никого равнодушным.',
+                    lv: 'Samtaina basbaritona īpašnieks un Jāzepa Vītola Latvijas Mūzikas akadēmijas absolvents. Nikolajs smalki izjūt katru skaņdarbu, piepildot to ar dziļumu un dramatismu. Viņa izpildījums aizskar sirdi un neatstāj vienaldzīgu nevienu.'
+                },
+                 tarassBio: {
+                    ru: 'Сердце и музыкальный двигатель дуэта. Тарас не только виртуозный пианист, но и талантливый аранжировщик, отвечающий за безупречное звучание. Его чуткий аккомпанемент создаёт идеальное полотно для голоса, а работа с аппаратурой гарантирует высочайшее качество звука на каждом концерте.',
+                    lv: 'Dueta sirds un muzikālais dzinējspēks. Tarāss ir ne tikai virtuozs pianists, bet arī talantīgs aranžētājs, kurš atbild par nevainojamu skanējumu. Viņa jūtīgais pavadījums rada ideālu muzikālo audeklu balsij, un darbs ar aparatūru garantē augstāko skaņas kvalitāti katrā koncertā.'
+                },
+                repertoire1: { ru: 'Классические романсы', lv: 'Klasiskās romances' },
+                repertoire2: { ru: 'Советская эстрада', lv: 'Padomju estrāde' },
+                repertoire3: { ru: 'Зарубежные хиты', lv: 'Ārzemju hiti' },
+                repertoire4: { ru: 'Неаполитанские песни', lv: 'Neapoliešu dziesmas' },
+                concertsText: {
+                    ru: 'В данный момент запланированных концертов нет. Следите за обновлениями на наших страницах в социальных сетях!',
+                    lv: 'Pašlaik nav plānotu koncertu. Sekojiet līdzi jaunumiem mūsu sociālo tīklu lapās!'
+                },
+                contactText: {
+                    ru: 'Мы открыты к сотрудничеству и готовы украсить ваше мероприятие — будь то концерт, юбилей, свадьба или корпоративный вечер. Свяжитесь с нами, чтобы обсудить детали.',
+                    lv: 'Mēs esam atvērti sadarbībai un gatavi izdaiļot jūsu pasākumu — vai tas būtu koncerts, jubileja, kāzas vai korporatīvais vakars. Sazinieties ar mums, lai apspriestu detaļas.'
+                }
+            };
+            
+            // --- LANGUAGE SWITCHER LOGIC ---
+            const langButtons = document.querySelectorAll('.lang-switcher button');
+            const translatableElements = document.querySelectorAll('[data-lang-key]');
+            
+            function setLanguage(lang) {
+                // Update text content
+                translatableElements.forEach(el => {
+                    const key = el.dataset.langKey;
+                    if (translations[key] && translations[key][lang]) {
+                        el.textContent = translations[key][lang];
+                    }
+                });
+
+                // Update html lang attribute
+                document.documentElement.lang = lang;
+
+                // Update active button state
+                langButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                
+                // Store user's choice
+                localStorage.setItem('mūzikas-olimps-lang', lang);
+
+                // Update Nikolajs's name
+                const nikolajsNameEl = document.querySelector('.duo-card:nth-child(1) h3');
+                if(nikolajsNameEl) {
+                    nikolajsNameEl.textContent = lang === 'ru' ? 'Николай Маскин' : 'Nikolajs Maškins';
+                }
+
+                // Update Taras's name
+                const tarassNameEl = document.querySelector('.duo-card:nth-child(2) h3');
+                if(tarassNameEl) {
+                    tarassNameEl.textContent = lang === 'ru' ? 'Тарас Ткаченко' : 'Tarāss Tkačenko';
+                }
+            }
+
+            // Set language on click
+            langButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    setLanguage(e.target.dataset.lang);
+                });
+            });
+
+            // Set initial language
+            const savedLang = localStorage.getItem('mūzikas-olimps-lang');
+            // Check if browser language is Latvian, otherwise default to Russian
+            const browserLang = navigator.language.startsWith('lv') ? 'lv' : 'ru';
+            setLanguage(savedLang || browserLang);
+
+        });
+    </script>
+</body>
+</html>
